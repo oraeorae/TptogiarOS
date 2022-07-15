@@ -6,6 +6,8 @@ SRCS_ASM = \
 SRCS_C = \
 	kernel.c \
 	uart.c \
+	printf.c \
+	page.c \
 
 OBJS = $(SRCS_ASM:.S=.o)
 OBJS += $(SRCS_C:.c=.o)
