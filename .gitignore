@@ -1,2 +1,6 @@
 # Project exclude paths
 kernel/*.o
+kernel/*.bin
+kernel/*.elf
+
+
