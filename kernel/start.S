@@ -21,7 +21,7 @@ _start:
 	
 	# 准备栈指针
 	slli t0,t0,10
-	la sp,stacks+STACK_SIZE
+	la sp,stacks + STACK_SIZE
 	add sp,sp,t0
 	j start_kernel
 
