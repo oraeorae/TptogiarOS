@@ -5,3 +5,12 @@ kernel/*.elf
 
 
 .idea/*
+/cmake-build-debug/
+
+*.o
+
+CMakeFiles/
+*.cmake
+*.exe
+CMakeCache.txt
+test/**/Makefile
