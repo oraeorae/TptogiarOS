@@ -9,6 +9,7 @@ all:
 
 run:
 	echo run
+	make debug
 
 
 debug:

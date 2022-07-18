@@ -2,6 +2,7 @@ include ./common.mk
 
 SRCS_ASM = \
 	start.S \
+	mem.S \
 
 SRCS_C = \
 	kernel.c \
@@ -17,7 +18,7 @@ all: os.elf
 
 # start.o must be the first in dependency!
 os.elf: ${OBJS}
-	${CC} ${CFLAGS} -Ttext=0x80000000 -o os.elf $^
+	${CC} ${CFLAGS} -T os.ld -o os.elf $^
 	${OBJCOPY} -O binary os.elf os.bin
 
 %.o : %.c
@@ -31,6 +32,8 @@ run: all
 	@echo "Press Ctrl-A and then X to exit QEMU"
 	@echo "------------------------------------"
 	@${QEMU} ${QFLAGS} -kernel os.elf
+	echo clean
+	make clean
 
 .PHONY : debug
 debug: all
