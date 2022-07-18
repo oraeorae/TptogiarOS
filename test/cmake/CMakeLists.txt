@@ -2,4 +2,6 @@ cmake_minimum_required(VERSION 2.8)
 
 project(test-cmake)
 
-add_executable(TestCMakeDemo.exe TestCMake.cpp)
+aux_source_directory(. CurDir)
+
+add_executable(TestCMakeDemo.exe ${CurDir})
