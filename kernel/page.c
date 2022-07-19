@@ -110,7 +110,7 @@ void * page_alloc(int pageCount){
 
             if (foundPageCount){
                 struct Page *pagePointer2Take = pagePointer;
-                for (int j = 0; j < (i + pageCount); ++j) {
+                for (int j = i; j < (i + pageCount); ++j) {
                     _set_page_flag(pagePointer2Take,PAGE_TOKEN);
                     pagePointer2Take++;
                 }
@@ -130,7 +130,7 @@ void free_page(void * pointer){
         return;
     }
     struct Page * page = (struct Page *)HEAP_START;
-    page += (uint32_t)pointer - _page_alloc_start_address/PAGE_SIZE;
+    page += ((uint32_t)pointer - _page_alloc_start_address)/PAGE_SIZE;
     while (! _is_free_page(page)){
         if (_is_last_page(page)){
             _clean_page(page);
@@ -145,12 +145,15 @@ void free_page(void * pointer){
 
 
 void page_test(){
+
+    free_page((void*)_page_alloc_start_address);
+
     void* p = page_alloc(1);
     printf("pageAllocCount = %d, curPoint = 0x%x \n",1,p);
 
     void* p2 = page_alloc(10);
     printf("pageAllocCount = %d, curPoint = 0x%x \n",10,p2);
-    free_page(p2);
+
 
     void* p3 = page_alloc(4);
     printf("pageAllocCount = %d, curPoint = 0x%x \n",4,p3);
