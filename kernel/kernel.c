@@ -8,6 +8,8 @@ extern void uart_puts(char *s);
 extern void schedule_init(void);
 extern void schedule(void);
 
+extern void osMain(void);
+
 void start_kernel(void){
 
     uart_init();
@@ -19,6 +21,9 @@ void start_kernel(void){
 
 
     schedule_init();
+
+    osMain();
+
     schedule();
 
     uart_puts(" 将不会执行到这里(任务切换) \n");
