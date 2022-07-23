@@ -1,10 +1,10 @@
 
 
 
-Test.elf:Test.o
-	gcc Test.o -o Test.elf
-Test.o:../Test.c
-	gcc ../Test.c -c -o Test.o
+test.elf:test.o
+	gcc test.o -o test.elf
+test.o:../test.c
+	gcc ../test.c -c -o test.o
 
 
 all:

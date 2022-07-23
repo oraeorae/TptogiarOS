@@ -3,7 +3,7 @@
 //
 
 #include <stdio.h>
-#include "OtherFile.h"
+#include "otherFile.h"
 
 
 int main(){

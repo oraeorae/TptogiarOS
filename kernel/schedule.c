@@ -18,7 +18,7 @@ static int topTaskPointer = 0;
 static int currentTaskPointer = -1;
 
 
-static void modifyMscratchRegister(reg_t value) {
+static void WriteMscratchRegister(reg_t value) {
     asm volatile("csrw mscratch,%0"
     :
     :"r"(value)
@@ -27,7 +27,7 @@ static void modifyMscratchRegister(reg_t value) {
 
 
 void schedule_init() {
-    modifyMscratchRegister(0);
+    WriteMscratchRegister(0);
 }
 
 

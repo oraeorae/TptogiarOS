@@ -3,7 +3,7 @@ include ./common.mk
 SRCS_ASM = \
 	.././assembly/start.S \
 	.././assembly/mem.S \
-	.././assembly/entry.S \
+	.././assembly/switch.S \
 
 SRCS_C = \
 	../kernel.c \
@@ -12,6 +12,7 @@ SRCS_C = \
 	../page.c \
 	../schedule.c \
 	../user.c \
+	../trap.c \
 	../../test/TptogiarOS/TestPage.c \
 
 OBJS = $(SRCS_ASM:.S=.o)
@@ -52,7 +53,9 @@ code: all
 
 .PHONY : clean
 clean:
-	rm -rf *.o *.bin *.elf
+	rm -rf *.bin *.elf
 	cd .. && rm -rf  *.o
+	cd ../assembly && rm -rf *.o
+	cd ../../test/TptogiarOS && rm -rf *.o
 
 
