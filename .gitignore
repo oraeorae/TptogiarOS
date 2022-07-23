@@ -13,5 +13,4 @@ CMakeFiles/
 *.cmake
 *.exe
 CMakeCache.txt
-test/**/Makefile
 /kernel/cmake-build-debug/

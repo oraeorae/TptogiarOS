@@ -1,6 +1,12 @@
 
 
 
+Test.elf:Test.o
+	gcc Test.o -o Test.elf
+Test.o:../Test.c
+	gcc ../Test.c -c -o Test.o
+
+
 all:
 	echo all
 
@@ -21,6 +27,10 @@ cd:
 	pwd
 	cd ../..
 	pwd
+
+clean:
+
+
 
 
 
