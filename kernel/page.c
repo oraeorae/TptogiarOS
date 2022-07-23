@@ -45,27 +45,27 @@ static inline uint32_t _align_page(uint32_t address) {
     // 4096-1 即0000，1111，1111，1111   取非得1111，0000，0000，0000 ,
     // 相当于一轮-1，所以加上次数要么刚好在下一轮初，
     // 要么有余，所以模掉后一定在下一轮，即对齐
-    uint32_t circle = (1<< PAGE_ORDER) - 1;
+    uint32_t circle = (1 << PAGE_ORDER) - 1;
     uint32_t nextAddress = (address + circle) & (~circle);
     return nextAddress;
 }
 
-static inline int _is_free_page(struct Page * page){
-    if (page->flags & PAGE_TOKEN){
+static inline int _is_free_page(struct Page *page) {
+    if (page->flags & PAGE_TOKEN) {
         return 0;
-    } else{
+    } else {
         return 1;
     }
 }
 
-static inline void _set_page_flag(struct Page * page,uint8_t flags){
+static inline void _set_page_flag(struct Page *page, uint8_t flags) {
     page->flags |= flags;
 }
 
-static inline int _is_last_page(struct Page * page){
-    if(page->flags & PAGE_LAST){
+static inline int _is_last_page(struct Page *page) {
+    if (page->flags & PAGE_LAST) {
         return 1;
-    } else{
+    } else {
         return 0;
     }
 }
@@ -84,39 +84,39 @@ void page_init() {
     _page_alloc_start_address = _align_page(HEAP_START + PAGE_INDEX_SPACE * PAGE_SIZE);
     _page_alloc_end_address = _page_alloc_start_address + (PAGE_SIZE * _num_pages);
 
-    printf("Text: 0x%x --> 0x%x \n",TEXT_START,TEXT_END);
-    printf("RODATA: 0x%x --> 0x%x \n",RODATA_START,RODATA_END);
-    printf("DATA: 0x%x --> 0x%x \n",DATA_START,DATA_END);
-    printf("BSS: 0x%x --> 0x%x \n",BSS_START,BSS_END);
-    printf("HEAP: 0x%x --> 0x%x \n",_page_alloc_start_address,_page_alloc_end_address);
+    printf("Text: 0x%x --> 0x%x \n", TEXT_START, TEXT_END);
+    printf("RODATA: 0x%x --> 0x%x \n", RODATA_START, RODATA_END);
+    printf("DATA: 0x%x --> 0x%x \n", DATA_START, DATA_END);
+    printf("BSS: 0x%x --> 0x%x \n", BSS_START, BSS_END);
+    printf("HEAP: 0x%x --> 0x%x \n", _page_alloc_start_address, _page_alloc_end_address);
 
 }
 
 
-void * page_alloc(int pageCount){
+void *page_alloc(int pageCount) {
     int foundPageCount = 0;
-    struct Page *pagePointer = (struct Page *)HEAP_START;
+    struct Page *pagePointer = (struct Page *) HEAP_START;
     for (int i = 0; i < (_num_pages - pageCount); ++i) {
-        if(_is_free_page(pagePointer)){
-            foundPageCount =1;
-            struct Page * pagePointer2Find = pagePointer;
+        if (_is_free_page(pagePointer)) {
+            foundPageCount = 1;
+            struct Page *pagePointer2Find = pagePointer;
             for (int j = 0; j < (i + pageCount); ++j) {
-                if (! _is_free_page(pagePointer2Find)){
+                if (!_is_free_page(pagePointer2Find)) {
                     foundPageCount = 0;
                     break;
                 }
                 pagePointer2Find++;
             }
 
-            if (foundPageCount){
+            if (foundPageCount) {
                 struct Page *pagePointer2Take = pagePointer;
                 for (int j = i; j < (i + pageCount); ++j) {
-                    _set_page_flag(pagePointer2Take,PAGE_TOKEN);
+                    _set_page_flag(pagePointer2Take, PAGE_TOKEN);
                     pagePointer2Take++;
                 }
                 pagePointer2Take--;
-                _set_page_flag(pagePointer2Take,PAGE_LAST);
-                return (void *)(_page_alloc_start_address +i*PAGE_SIZE);
+                _set_page_flag(pagePointer2Take, PAGE_LAST);
+                return (void *) (_page_alloc_start_address + i * PAGE_SIZE);
             }
         }
         pagePointer++;
@@ -125,17 +125,17 @@ void * page_alloc(int pageCount){
 }
 
 
-void free_page(void * pointer){
-    if (!pointer || (uint32_t)pointer >= _page_alloc_end_address){
+void free_page(void *pointer) {
+    if (!pointer || (uint32_t) pointer >= _page_alloc_end_address) {
         return;
     }
-    struct Page * page = (struct Page *)HEAP_START;
-    page += ((uint32_t)pointer - _page_alloc_start_address)/PAGE_SIZE;
-    while (! _is_free_page(page)){
-        if (_is_last_page(page)){
+    struct Page *page = (struct Page *) HEAP_START;
+    page += ((uint32_t) pointer - _page_alloc_start_address) / PAGE_SIZE;
+    while (!_is_free_page(page)) {
+        if (_is_last_page(page)) {
             _clean_page(page);
             break;
-        } else{
+        } else {
             _clean_page(page);
             page++;
         }
@@ -144,30 +144,6 @@ void free_page(void * pointer){
 }
 
 
-void page_test(){
 
-    //free_page((void*)_page_alloc_start_address);
-
-    void* p = page_alloc(1);
-    printf("pageAllocCount = %d, curPoint = 0x%x \n",1,p);
-
-    void* p2 = page_alloc(10);
-    printf("pageAllocCount = %d, curPoint = 0x%x \n",10,p2);
-
-
-    void* p3 = page_alloc(4);
-    printf("pageAllocCount = %d, curPoint = 0x%x \n",4,p3);
-
-    p = page_alloc(1);
-    printf("pageAllocCount = %d, curPoint = 0x%x \n",1,p);
-
-    p2 = page_alloc(10);
-    printf("pageAllocCount = %d, curPoint = 0x%x \n",10,p2);
-    free_page(p2);
-
-    p3 = page_alloc(4);
-    printf("pageAllocCount = %d, curPoint = 0x%x \n",4,p3);
-
-}
 
 
