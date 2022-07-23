@@ -53,7 +53,6 @@ code: all
 .PHONY : clean
 clean:
 	rm -rf *.o *.bin *.elf
-	cd ..
-	rm -rf *.o *.bin *.elf
+	cd .. && rm -rf  *.o
 
 

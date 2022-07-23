@@ -8,6 +8,8 @@ kernel/*.elf
 /cmake-build-debug/
 
 *.o
+*.bin
+*.elf
 
 CMakeFiles/
 *.cmake

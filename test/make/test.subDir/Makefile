@@ -29,6 +29,8 @@ cd:
 	pwd
 
 clean:
+	rm -rf *.elf *.bin *.o
+	cd .. && rm -rf *.elf *.bin *.o
 
 
 
