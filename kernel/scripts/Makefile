@@ -1,18 +1,18 @@
 include ./common.mk
 
 SRCS_ASM = \
-	start.S \
-	mem.S \
-	entry.S \
+	.././assembly/start.S \
+	.././assembly/mem.S \
+	.././assembly/entry.S \
 
 SRCS_C = \
-	kernel.c \
-	uart.c \
-	printf.c \
-	page.c \
-	schedule.c \
-	user.c \
-	../test/TptogiarOS/TestPage.c \
+	../kernel.c \
+	../uart.c \
+	../printf.c \
+	../page.c \
+	../schedule.c \
+	../user.c \
+	../../test/TptogiarOS/TestPage.c \
 
 OBJS = $(SRCS_ASM:.S=.o)
 OBJS += $(SRCS_C:.c=.o)
@@ -22,8 +22,9 @@ all: os.elf
 
 # start.o must be the first in dependency!
 os.elf: ${OBJS}
-	${CC} ${CFLAGS} -T ./load/os.ld -o os.elf $^
+	${CC} ${CFLAGS} -T ./os.ld -o os.elf $^
 	${OBJCOPY} -O binary os.elf os.bin
+	echo success!\\n
 
 %.o : %.c
 	${CC} ${CFLAGS} -c -o $@ $<
@@ -36,15 +37,14 @@ run: all
 	@echo "Press Ctrl-A and then X to exit QEMU"
 	@echo "------------------------------------"
 	@${QEMU} ${QFLAGS} -kernel os.elf
-	echo clean
-	make clean
+
 
 .PHONY : debug
 debug: all
 	@echo "Press Ctrl-C and then input 'quit' to exit GDB and QEMU"
 	@echo "-------------------------------------------------------"
 	@${QEMU} ${QFLAGS} -kernel os.elf -s -S &
-	@${GDB} os.elf -q -x ./debug/gdbinit
+	@${GDB} os.elf -q -x ./gdbinit
 
 .PHONY : code
 code: all
@@ -53,4 +53,7 @@ code: all
 .PHONY : clean
 clean:
 	rm -rf *.o *.bin *.elf
+	cd ..
+	rm -rf *.o *.bin *.elf
+
 
