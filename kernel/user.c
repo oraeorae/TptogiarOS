@@ -7,18 +7,18 @@
 #define DELAY 1000
 
 
-void userTask0(void){
+void userTask0(void) {
     printf("Task 0 : 任务被创建！ \n");
-    while (1){
+    while (1) {
         printf("Task 0 : Running \n");
         taskDelayCount(5000);
         taskYield();
     }
 }
 
-void userTask1(void){
+void userTask1(void) {
     printf("Task 1 : 任务被创建！ \n");
-    while (1){
+    while (1) {
         printf("Task 1 : Running \n");
         taskDelayCount(5000);
         taskYield();
@@ -26,9 +26,7 @@ void userTask1(void){
 }
 
 
-
-
-void osMain(void){
+void osMain(void) {
 
     taskCreate(userTask0);
     taskCreate(userTask1);

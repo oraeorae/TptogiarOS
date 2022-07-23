@@ -11,7 +11,8 @@ SRCS_C = \
 	printf.c \
 	page.c \
 	schedule.c \
-	user.c
+	user.c \
+	../test/TptogiarOS/TestPage.c \
 
 OBJS = $(SRCS_ASM:.S=.o)
 OBJS += $(SRCS_C:.c=.o)

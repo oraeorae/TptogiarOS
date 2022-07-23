@@ -10,14 +10,17 @@
 
 /* uart */
 extern int uart_putc(char ch);
+
 extern void uart_puts(char *s);
 
 /* printf */
-extern int  printf(const char* s, ...);
+extern int printf(const char *s, ...);
+
 extern void panic(char *s);
 
 /* memory management */
-extern void* page_alloc(int npages);
+extern void *page_alloc(int npages);
+
 extern void page_free(void *p);
 
 // 用以表征CPU内的全部寄存器，以便于上下文切换
@@ -65,7 +68,9 @@ struct Context {
 };
 
 extern int taskCreate(void (*taskAddress)(void));
+
 extern void taskDelayCount(volatile int count);
+
 extern void taskYield();
 
 
