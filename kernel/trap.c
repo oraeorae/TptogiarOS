@@ -27,7 +27,7 @@ reg_t trapHandler(reg_t epc,reg_t cause){
                 printf("软中断software interruption \n");
                 break;
             case 7:
-                printf("时钟中断timer interruption \n");
+                printf("定时器中断timer interruption \n");
                 break;
             case 11:
                 printf("外部中断external interruption \n");
