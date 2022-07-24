@@ -4,6 +4,7 @@ SRCS_ASM = \
 	.././assembly/start.S \
 	.././assembly/mem.S \
 	.././assembly/switch.S \
+	.././assembly/trap.S \
 
 SRCS_C = \
 	../kernel.c \
@@ -13,7 +14,9 @@ SRCS_C = \
 	../schedule.c \
 	../user.c \
 	../trap.c \
-	../../test/TptogiarOS/TestPage.c \
+	../../test/TptogiarOS/testPage.c \
+	../../test/TptogiarOS/testTrap.c \
+
 
 OBJS = $(SRCS_ASM:.S=.o)
 OBJS += $(SRCS_C:.c=.o)
@@ -25,7 +28,7 @@ all: os.elf
 os.elf: ${OBJS}
 	${CC} ${CFLAGS} -T ./os.ld -o os.elf $^
 	${OBJCOPY} -O binary os.elf os.bin
-	echo success!\\n
+	echo "\e[;31;1m Success! \e[m"
 
 %.o : %.c
 	${CC} ${CFLAGS} -c -o $@ $<

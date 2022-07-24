@@ -18,17 +18,19 @@ static int topTaskPointer = 0;
 static int currentTaskPointer = -1;
 
 
-static void WriteMscratchRegister(reg_t value) {
-    asm volatile("csrw mscratch,%0"
-    :
-    :"r"(value)
-    );
-}
+//static void WriteMscratchRegister(reg_t value) {
+//    asm volatile("csrw mscratch,%0"
+//    :
+//    :"r"(value)
+//    );
+//}
 
 
 void schedule_init() {
-    WriteMscratchRegister(0);
+    //WriteMscratchRegister(0);
+    write_mscratch(0);
 }
+
 
 
 void schedule() {

@@ -11,6 +11,9 @@ extern void schedule(void);
 
 extern void osMain(void);
 
+extern void trapInit(void);
+
+
 void start_kernel(void) {
 
     uart_init();
@@ -19,6 +22,7 @@ void start_kernel(void) {
     page_init();
     page_test();
 
+    trapInit();
 
     schedule_init();
 
