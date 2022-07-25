@@ -16,7 +16,7 @@ static void externalInterruptHandler(){
     if (interruptId == UART0_IRQ){
         uartInterruptHandler();
     } else if (interruptId) {
-        printf("  \n",interruptId);
+        printf(" 暂为支持的中断类型！ \n",interruptId);
     }
 
     if (interruptId) {
@@ -52,7 +52,7 @@ reg_t trapHandler(reg_t epc,reg_t cause){
                 break;
         }
     } else {
-        printf("发送异常，异常码为：%d \n",causeCode);
+        printf("发生异常，异常码为：%d \n",causeCode);
         panic("啥也没处理 \n");
         //returnPc += 4;
     }
