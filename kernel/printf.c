@@ -1,7 +1,7 @@
 //
 // Created by root on 2022.07.17.
 //
-#include "header/os.h"
+#include "headers/os.h"
 
 
 static int _vsnprintf(char *out, size_t n, const char *s, va_list vl) {

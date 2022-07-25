@@ -1,4 +1,4 @@
-#include "header/os.h"
+#include "headers/os.h"
 
 
 extern void uart_init(void);
@@ -13,6 +13,8 @@ extern void osMain(void);
 
 extern void trapInit(void);
 
+extern void plicInit(void);
+
 
 void start_kernel(void) {
 
@@ -23,6 +25,8 @@ void start_kernel(void) {
     page_test();
 
     trapInit();
+
+    plicInit();
 
     schedule_init();
 

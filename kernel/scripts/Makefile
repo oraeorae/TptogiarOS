@@ -5,6 +5,7 @@ SRCS_ASM = \
 	.././assembly/mem.S \
 	.././assembly/switch.S \
 	.././assembly/trap.S \
+	.././assembly/macro/context.S \
 
 SRCS_C = \
 	../kernel.c \
@@ -12,8 +13,9 @@ SRCS_C = \
 	../printf.c \
 	../page.c \
 	../schedule.c \
-	../user.c \
 	../trap.c \
+	../plic.c \
+	../../test/TptogiarOS/testTask.c \
 	../../test/TptogiarOS/testPage.c \
 	../../test/TptogiarOS/testTrap.c \
 

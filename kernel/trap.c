@@ -1,13 +1,27 @@
 //
 // Created by root on 2022.07.23.
 //
-#include "header/os.h"
+#include "headers/os.h"
 
 extern void trapVector(void);
+extern void uartInterruptHandler(void);
 
 
 void trapInit(){
     write_mtvec((reg_t)trapVector);
+};
+
+static void externalInterruptHandler(){
+    int interruptId = plicClaim();
+    if (interruptId == UART0_IRQ){
+        uartInterruptHandler();
+    } else if (interruptId) {
+        printf("  \n",interruptId);
+    }
+
+    if (interruptId) {
+        plicComplete();
+    }
 }
 
 
@@ -30,7 +44,8 @@ reg_t trapHandler(reg_t epc,reg_t cause){
                 printf("定时器中断timer interruption \n");
                 break;
             case 11:
-                printf("外部中断external interruption \n");
+                printf("Machine模式下的外部中断external interruption \n");
+                externalInterruptHandler();
                 break;
             default:
                 printf("暂未处理或是未知的中断类型 \n");

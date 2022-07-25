@@ -2,7 +2,7 @@
 // Created by root on 2022.07.20.
 //
 
-#include "header/os.h"
+#include "headers/os.h"
 
 //
 extern void switch_to(struct Context *context);
