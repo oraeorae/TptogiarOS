@@ -11,8 +11,8 @@
 
 /* uart */
 extern int uart_putc(char ch);
-
 extern void uart_puts(char *s);
+extern int uartGets(void);
 
 /* printf */
 extern int printf(const char *s, ...);
@@ -23,6 +23,15 @@ extern void panic(char *s);
 extern void *page_alloc(int npages);
 
 extern void page_free(void *p);
+
+extern int taskCreate(void (*taskAddress)(void));
+
+extern void taskDelayCount(volatile int count);
+
+extern void taskYield();
+
+extern int plicClaim(void);
+extern void plicComplete(void);
 
 // 用以表征CPU内的全部寄存器，以便于上下文切换
 struct Context {
@@ -68,11 +77,7 @@ struct Context {
     reg_t t6;
 };
 
-extern int taskCreate(void (*taskAddress)(void));
 
-extern void taskDelayCount(volatile int count);
-
-extern void taskYield();
 
 
 #endif /* __OS_H__ */

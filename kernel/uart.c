@@ -1,6 +1,5 @@
-#include "header/types.h"
-#include "header/platform.h"
-
+#include "headers/types.h"
+#include "headers/platform.h"
 /*
  * The UART control registers are memory-mapped at address UART0. 
  * This macro returns the address of one of the registers.
@@ -102,6 +101,11 @@ void uart_init() {
      */
     lcr = 0;
     uart_write_reg(LCR, lcr | (3 << 0));
+    //
+    uint8_t ier = uart_read_reg(IER);
+    uart_write_reg(IER,ier | (1<<0));
+
+
 }
 
 int uart_putc(char ch) {
@@ -112,6 +116,28 @@ int uart_putc(char ch) {
 void uart_puts(char *s) {
     while (*s) {
         uart_putc(*s++);
+    }
+}
+
+
+int uartGets(void){
+    if (uart_read_reg(LSR) & LSR_RX_READY){
+        return uart_read_reg(RHR);
+    } else{
+        return -1;
+    }
+}
+
+// 处理uart产生的中断信号
+void uartInterruptHandler(void){
+    while (1){
+        int c = uartGets();
+        if (c == -1){
+            break;
+        }else {
+            uart_puts((char)c);
+            uart_puts('\n');
+        }
     }
 }
 
