@@ -135,8 +135,8 @@ void uartInterruptHandler(void){
         if (c == -1){
             break;
         }else {
-            uart_puts((char)c);
-            uart_puts('\n');
+            uart_putc((char)c);
+            uart_putc('\n');
         }
     }
 }

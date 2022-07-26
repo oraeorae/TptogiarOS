@@ -26,7 +26,7 @@
 
 
 
-// tp,即x4，用于存放栈指针
+// tp,即x4，用于存线程指针
 static inline reg_t read_tp() {
     reg_t x;
     asm volatile("mv %0, tp":"=r"(x));
@@ -73,6 +73,11 @@ static inline void write_mscratch(reg_t x){
 // mtvec用于存放trap处理程序的入口地址
 static inline void write_mtvec(reg_t x){
     asm volatile ("csrw mtvec, %0"::"r"(x));
+}
+static inline reg_t read_mtvec(){
+    reg_t x;
+    asm volatile ("csrr %0, mtvec":"=r"(x));
+    return x;
 }
 
 
