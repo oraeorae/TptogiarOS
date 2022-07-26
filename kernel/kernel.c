@@ -15,6 +15,7 @@ extern void trapInit(void);
 
 extern void plicInit(void);
 
+extern void timerInit(void);
 
 void start_kernel(void) {
 
@@ -27,6 +28,8 @@ void start_kernel(void) {
     trapInit();
 
     plicInit();
+
+    timerInit();
 
     schedule_init();
 

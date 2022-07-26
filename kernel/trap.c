@@ -5,7 +5,7 @@
 
 extern void trapVector(void);
 extern void uartInterruptHandler(void);
-
+extern void timerHandler(void);
 
 void trapInit(){
     write_mtvec((reg_t)trapVector);
@@ -44,7 +44,8 @@ reg_t trapHandler(reg_t epc,reg_t cause){
                 printf("软中断software interruption \n");
                 break;
             case 7:
-                printf("定时器中断timer interruption \n");
+                printf("Mechine模式下的定时器中断timer interruption \n");
+                timerHandler();
                 break;
             case 11:
                 // TODO Bug 只会响应一次，待修复
@@ -62,7 +63,6 @@ reg_t trapHandler(reg_t epc,reg_t cause){
     }
     return returnPc;
 }
-
 
 
 
