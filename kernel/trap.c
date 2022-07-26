@@ -22,6 +22,9 @@ static void externalInterruptHandler(){
     if (interruptId) {
         plicComplete();
     }
+
+
+    printf("trapHandler  mtvec =%d  \n ",read_mtvec());
 }
 
 
@@ -44,6 +47,7 @@ reg_t trapHandler(reg_t epc,reg_t cause){
                 printf("定时器中断timer interruption \n");
                 break;
             case 11:
+                // TODO Bug 只会响应一次，待修复
                 printf("Machine模式下的外部中断external interruption \n");
                 externalInterruptHandler();
                 break;
@@ -53,8 +57,8 @@ reg_t trapHandler(reg_t epc,reg_t cause){
         }
     } else {
         printf("发生异常，异常码为：%d \n",causeCode);
-        panic("啥也没处理 \n");
-        //returnPc += 4;
+        //panic("啥也没处理 \n");
+        returnPc += 4;
     }
     return returnPc;
 }

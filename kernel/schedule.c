@@ -59,7 +59,7 @@ int taskCreate(void (*taskAddress)(void)) {
 
 // TODO 待改进的sleep
 void taskDelayCount(volatile int count) {
-    count *= 10000;
+    count *= 500000;
     while (count--);
 }
 

@@ -29,9 +29,9 @@ void userTask1(void) {
 }
 
 void userTaskWithTrap(void) {
-    printf("Task 0 : 任务被创建！ \n");
+    printf("Task 2 : 任务被创建！ \n");
     while (1) {
-        printf("Task 0 : Running \n");
+        printf("Task 2 : Running \n");
         testTrap();
         taskDelayCount(5000);
         taskYield();
@@ -45,5 +45,5 @@ void osMain(void) {
 
     taskCreate(userTask0);
     taskCreate(userTask1);
-
+    taskCreate(userTaskWithTrap);
 }
