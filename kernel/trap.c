@@ -30,6 +30,7 @@ static void externalInterruptHandler(){
 
 reg_t trapHandler(reg_t epc,reg_t cause){
 
+    // 进入trap前指令的执行位置
     reg_t returnPc = epc;
     //
     reg_t causeCode = cause & 0xfff;
@@ -57,7 +58,7 @@ reg_t trapHandler(reg_t epc,reg_t cause){
                 break;
         }
     } else {
-        printf("发生异常，异常码为：%d \n",causeCode);
+        printf("发生异常，reg_epc = %x , reg_cause = %x ,异常码为：%d \n",epc,cause,causeCode);
         //panic("啥也没处理 \n");
         returnPc += 4;
     }
