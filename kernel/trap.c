@@ -20,7 +20,7 @@ static void externalInterruptHandler(){
     }
 
     if (interruptId) {
-        plicComplete();
+        plicComplete(interruptId);
     }
 
 

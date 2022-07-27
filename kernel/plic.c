@@ -34,7 +34,7 @@ int plicClaim(void){
 }
 
 
-void plicComplete(void){
+void plicComplete(int interruptId){
     int hart = read_mhartid();
-    *(uint32_t*)PLIC_MCOMPLETE(hart);
+    *(uint32_t*)PLIC_MCOMPLETE(hart) = interruptId;
 }
