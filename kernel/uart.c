@@ -101,7 +101,7 @@ void uartInit() {
      */
     lcr = 0;
     uart_write_reg(LCR, lcr | (3 << 0));
-    //
+    // 打开，使其接收中断
     uint8_t ier = uart_read_reg(IER);
     uart_write_reg(IER,ier | (1<<0));
 
