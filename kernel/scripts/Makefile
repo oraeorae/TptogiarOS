@@ -15,7 +15,7 @@ SRCS_C = \
 	../schedule.c \
 	../trap.c \
 	../plic.c \
-	../time.c \
+	../timer.c \
 	../../test/TptogiarOS/testTask.c \
 	../../test/TptogiarOS/testPage.c \
 	../../test/TptogiarOS/testTrap.c \

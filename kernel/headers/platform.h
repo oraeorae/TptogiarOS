@@ -105,7 +105,7 @@
 //
 #define CLINT_MSIP(hartid) (CLINT_BASE + 4 * (hartid))
 // mtime寄存器，自增的计数器，每次上电复位时会被置为0
-#define CLINT_MTIME (CLINT_BASE + 0xBFF7)
+#define CLINT_MTIME (CLINT_BASE + 0xBFF8)
 // mtimecmp寄存器，当mtime自增到>=mtimecmp时，CLINT会产生一个定时器中断
 #define CLINT_MTIMECMP(hartid) (CLINT_BASE + 0x4000 + 8 * (hartid))
 // 10000000 ticks per-second

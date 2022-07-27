@@ -8,6 +8,7 @@ extern void uartInterruptHandler(void);
 extern void timerHandler(void);
 
 void trapInit(){
+    // 设置trap处理程序入口函数
     write_mtvec((reg_t)trapVector);
 };
 
@@ -22,9 +23,6 @@ static void externalInterruptHandler(){
     if (interruptId) {
         plicComplete(interruptId);
     }
-
-
-    printf("trapHandler  mtvec =%d  \n ",read_mtvec());
 }
 
 
