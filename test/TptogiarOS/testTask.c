@@ -45,5 +45,5 @@ void osMain(void) {
 
     taskCreate(userTask0);
     taskCreate(userTask1);
-    taskCreate(userTaskWithTrap);
+    //taskCreate(userTaskWithTrap);
 }

@@ -2,7 +2,7 @@
 // Created by root on 2022.07.23.
 //
 
-void page_test() {
+void pageTest() {
 
     //free_page((void*)_page_alloc_start_address);
 

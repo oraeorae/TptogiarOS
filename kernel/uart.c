@@ -66,7 +66,7 @@
 #define uart_read_reg(reg) (*(UART_REG(reg)))
 #define uart_write_reg(reg, v) (*(UART_REG(reg)) = (v))
 
-void uart_init() {
+void uartInit() {
     /* disable interrupts. */
     uart_write_reg(IER, 0x00);
 

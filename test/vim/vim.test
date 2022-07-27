@@ -34,17 +34,17 @@ Test Vim1
 Test
 
 
-extern void uart_init(void);
+extern void uartInit(void);
 extern void uart_puts(char *s);
 
 
 void start_kernel(void){
 
-    uart_init();
+    uartInit();
     uart_puts("Hello TptogiarOS kernel !\n");
 
     while (1){
-        uart_init(232);
+        uartInit(232);
     }
 
 

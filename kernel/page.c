@@ -70,7 +70,7 @@ static inline int _is_last_page(struct Page *page) {
     }
 }
 
-void page_init() {
+void pageInit() {
     _num_pages = (HEAP_SIZE / PAGE_SIZE) - PAGE_INDEX_SPACE;
 
     printf("HEAP_START = %x , HEAP_SIZE = %x , num of pages = %d \n", HEAP_START, HEAP_SIZE, _num_pages);

@@ -1,7 +1,7 @@
 #include "headers/os.h"
 
 
-extern void uart_init(void);
+extern void uartInit(void);
 extern void uart_puts(char *s);
 
 
@@ -19,11 +19,11 @@ extern void timerInit(void);
 
 void start_kernel(void) {
 
-    uart_init();
+    uartInit();
     uart_puts("\n\n======  Hello TptogiarOS kernel !  ======\n\n\n");
 
-    page_init();
-    page_test();
+    pageInit();
+    pageTest();
 
     trapInit();
 

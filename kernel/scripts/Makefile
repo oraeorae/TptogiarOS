@@ -62,6 +62,7 @@ clean:
 	rm -rf *.bin *.elf
 	cd .. && rm -rf  *.o
 	cd ../assembly && rm -rf *.o
+	cd ../assembly/macro && rm -rf *.o
 	cd ../../test/TptogiarOS && rm -rf *.o
 
 
