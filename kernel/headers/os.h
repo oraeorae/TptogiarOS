@@ -75,6 +75,9 @@ struct Context {
     reg_t t4;
     reg_t t5;
     reg_t t6;
+
+    // 用来存放mepc寄存器的值,该寄存器指向了task的执行位置
+    reg_t pc;
 };
 
 

@@ -77,12 +77,23 @@
 .endm
 
 
-.macro allRegSave
+.macro allRegSaveAndMEPC
+    # 将t6寄存器和mscratch寄存器的值进行交换
     csrrw t6, mscratch, t6
     reg_save t6
+
+
+    # 原t6的值被置换进mscratch里面，且作为基地址没有在宏中保存进内存，故还需要在此将t6写进内存
+
+    # t5的值同其他通用寄存器一样已经被保存进内存，可以任意修改，所以换他来当基地址
     mv t5, t6
+     # 再次置换，t6变原原值
     csrr t6, mscratch
     sw t6, 120(t5)
     # 还原mscratch的值，使其还指向原Context的位置
     csrw mscratch, t5
+
+    # 将mepc寄存器的指也保存到内存中
+    csrr a0, mepc
+    sw a0, 124(t5)
 .endm

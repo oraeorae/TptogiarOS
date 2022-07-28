@@ -23,6 +23,16 @@ _start:
 	slli t0,t0,10
 	la sp,stacks + STACK_SIZE
 	add sp,sp,t0
+
+	# 在执行第一次switch_to内的mret指令时，会根据原先mstatus的值调整mstatus的值，
+	# 而原先mstatus寄存器的值为0，调整后还是为0，会使得一些开关被置为关的状态,
+	# 所以在此处需要先对mstatus进行初始化
+    li t0, 3 << 11 | 1<< 7
+    csrr a1, mstatus
+    or t0, t0, a1
+    csrw mstatus, t0
+
+
 	j start_kernel
 
 

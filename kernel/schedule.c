@@ -48,7 +48,7 @@ int taskCreate(void (*taskAddress)(void)) {
         // 此处将任务地址放入当前这个context的ra中，
         // 是因为在switch_to函数内会把这个context加载进寄存器，然后函数放回到ra寄存器记录的地址处
         // 而此时ra寄存器就是还task的地址
-        taskContexts[topTaskPointer].ra = (reg_t) taskAddress;
+        taskContexts[topTaskPointer].pc = (reg_t) taskAddress;
         topTaskPointer++;
         return 0;
     } else {

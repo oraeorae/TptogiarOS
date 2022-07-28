@@ -3,6 +3,8 @@
 //
 #include "headers/os.h"
 
+extern void schedule(void);
+
 #define TIMER_INTERVAL CLINT_TIMEBASE_FREQ
 
 static uint32_t tick = 0;
@@ -34,6 +36,7 @@ void timerHandler(){
     tick++;
     printf("当前已经产生的定时器中断的次数 = %d \n",tick);
     timerLoad(TIMER_INTERVAL);
+    schedule();
 }
 
 

@@ -15,7 +15,7 @@ void userTask0(void) {
     while (1) {
         printf("Task 0 : Running \n");
         taskDelayCount(5000);
-        taskYield();
+        //taskYield();
     }
 }
 
@@ -24,7 +24,7 @@ void userTask1(void) {
     while (1) {
         printf("Task 1 : Running \n");
         taskDelayCount(5000);
-        taskYield();
+        //taskYield();
     }
 }
 
@@ -34,7 +34,7 @@ void userTaskWithTrap(void) {
         printf("Task 2 : Running \n");
         testTrap();
         taskDelayCount(5000);
-        taskYield();
+        //taskYield();
     }
 }
 

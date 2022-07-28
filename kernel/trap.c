@@ -57,8 +57,8 @@ reg_t trapHandler(reg_t epc,reg_t cause){
         }
     } else {
         printf("发生异常，reg_epc = %x , reg_cause = %x ,异常码为：%d \n",epc,cause,causeCode);
-        //panic("啥也没处理 \n");
-        returnPc += 4;
+        panic("啥也没处理 \n");
+        //returnPc += 4;
     }
     return returnPc;
 }
