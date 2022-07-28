@@ -29,6 +29,8 @@ static int currentTaskPointer = -1;
 void schedule_init() {
     //WriteMscratchRegister(0);
     write_mscratch(0);
+    // 打开 machine模式下的软中断
+    write_mie(read_mie() | MIE_MSIE);
 }
 
 
@@ -65,7 +67,10 @@ void taskDelayCount(volatile int count) {
 
 
 void taskYield() {
-    schedule();
+    int hartId = read_mhartid();
+    // 该寄存器会映射到mip.MSIP的位置上，
+    // 该寄存器位1表示有中断，0表示中断处理完毕
+    *(uint32_t*) CLINT_MSIP(hartId) = 1;
 }
 
 

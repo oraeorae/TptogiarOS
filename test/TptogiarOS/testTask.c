@@ -12,10 +12,11 @@ extern void testTrap();
 
 void userTask0(void) {
     printf("Task 0 : 任务被创建！ \n");
+    taskYield();
+    printf("Task 0 : come back \n");
     while (1) {
         printf("Task 0 : Running \n");
         taskDelayCount(5000);
-        //taskYield();
     }
 }
 
@@ -24,7 +25,6 @@ void userTask1(void) {
     while (1) {
         printf("Task 1 : Running \n");
         taskDelayCount(5000);
-        //taskYield();
     }
 }
 

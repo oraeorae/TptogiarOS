@@ -35,7 +35,7 @@ void timerInit(){
 void timerHandler(){
     tick++;
     printf("当前已经产生的定时器中断的次数 = %d \n",tick);
-    timerLoad(TIMER_INTERVAL);
+    timerLoad(TIMER_INTERVAL / 2 );
     schedule();
 }
 

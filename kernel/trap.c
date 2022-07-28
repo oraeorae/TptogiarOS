@@ -6,6 +6,7 @@
 extern void trapVector(void);
 extern void uartInterruptHandler(void);
 extern void timerHandler(void);
+extern void schedule(void);
 
 void trapInit(){
     // 设置trap处理程序入口函数
@@ -41,6 +42,9 @@ reg_t trapHandler(reg_t epc,reg_t cause){
         switch (causeCode) {
             case 3:
                 printf("软中断software interruption \n");
+                int hartId = read_mhartid();
+                *(uint32_t*) CLINT_MSIP(hartId) = 0;
+                schedule();
                 break;
             case 7:
                 printf("Mechine模式下的定时器中断timer interruption \n");
