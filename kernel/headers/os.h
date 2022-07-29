@@ -33,6 +33,10 @@ extern void taskYield();
 extern int plicClaim(void);
 extern void plicComplete(int interruptId);
 
+extern struct SpinLock* getSpinLock();
+extern int spinLock(struct SpinLock* lock);
+extern int spinUnlock(struct SpinLock* lock);
+
 // 用以表征CPU内的全部寄存器，以便于上下文切换
 struct Context {
 

@@ -1,5 +1,6 @@
 CROSS_COMPILE = riscv64-unknown-elf-
-CFLAGS = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -Wall
+# gcc -w 关闭警告信息  -W 显示警告信息
+CFLAGS = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -w
 
 QEMU = qemu-system-riscv32
 QFLAGS = -nographic -smp 1 -machine virt -bios none
@@ -25,6 +26,7 @@ SRCS_C = \
 	../trap.c \
 	../plic.c \
 	../timer.c \
+	../lock.c \
 	../../test/TptogiarOS/testTask.c \
 	../../test/TptogiarOS/testPage.c \
 	../../test/TptogiarOS/testTrap.c \
