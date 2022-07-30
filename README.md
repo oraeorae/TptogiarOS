@@ -18,9 +18,9 @@
 
 
 
-
+# 版本迭代
 <details open="open">
-  <summary><h1>v1.0-alpha</h1></summary>
+  <summary><h>v1.0-alpha</h2></summary>
   
 ```
 1.  [新增] 系统引导
