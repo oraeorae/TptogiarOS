@@ -20,7 +20,7 @@
 
 
 <details open="open">
-  <summary>v1.0-alpha</summary>
+  <summary><h1>v1.0-alpha</h1></summary>
   
 ```
 1.  [新增] 系统引导
