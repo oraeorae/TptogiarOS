@@ -20,7 +20,7 @@
 
 # 版本迭代
 <details open="open">
-  <summary><h>v1.0-alpha</h2></summary>
+  <summary><h2>v1.0-alpha</h2></summary>
   
 ```
 1.  [新增] 系统引导
