@@ -7,6 +7,8 @@ extern void trapVector(void);
 extern void uartInterruptHandler(void);
 extern void timerHandler(void);
 extern void schedule(void);
+extern void doSyscall(struct Context* context);
+
 
 void trapInit(){
     // 设置trap处理程序入口函数
@@ -27,7 +29,7 @@ static void externalInterruptHandler(){
 }
 
 
-reg_t trapHandler(reg_t epc,reg_t cause){
+reg_t trapHandler(reg_t epc,reg_t cause,struct Context context){
 
     // 进入trap前指令的执行位置
     reg_t returnPc = epc;
@@ -61,9 +63,22 @@ reg_t trapHandler(reg_t epc,reg_t cause){
         }
     } else {
         printf("发生异常，reg_epc = %x , reg_cause = %x ,异常码为：%d \n",epc,cause,causeCode);
-        panic("啥也没处理 \n");
-        //returnPc += 4;
+        switch (causeCode) {
+            case 8:
+                printf("System call from User Mode... \n");
+                doSyscall(&context);
+                // mepc寄存器内存放的是调用ecall指令的那条指令的地址，
+                // 所以在对应的处理程序中需要手动将指令指针指向下一跳指令，
+                // 否则会陷入死循环
+                returnPc+=4;
+                break;
+            default:
+                panic("啥也没处理 \n");
+                //returnPc += 4;
+                break;
+        }
     }
+    // 返回mepc的值，被存入ra寄存器中，所以后面的汇编还需要把ra的值搬如mepc寄存器
     return returnPc;
 }
 

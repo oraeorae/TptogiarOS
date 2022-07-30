@@ -5,13 +5,13 @@ qemu_args = -nographic -smp 1 -machine virt -bios none
 gcc_args = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -w
 gdb = gdb-multiarch
 
-
 SRCS_ASM = \
 	.././assembly/start.S \
 	.././assembly/mem.S \
 	.././assembly/switch.S \
 	.././assembly/trap.S \
 	.././assembly/macro/context.S \
+	../../TptogiarOS-example/syscall/testCSR.S \
 
 SRCS_C = \
 	../kernel.c \
@@ -30,6 +30,7 @@ SRCS_C = \
 	../../test/TptogiarOS/testTrap.c \
 	../../test/TptogiarOS/testLock.c \
 	../../test/TptogiarOS/testTimer.c \
+	../../TptogiarOS-example/syscall/testSyscall.c \
 
 
 gcc = ${cross_compile}gcc
@@ -43,6 +44,10 @@ OBJS += $(SRCS_C:.c=.o)
 
 .DEFAULT_GOAL := all
 all: TptogiarOS.elf
+
+
+
+
 
 
 # start.o must be the first in dependency!

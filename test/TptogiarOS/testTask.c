@@ -13,6 +13,7 @@ extern void userTaskWithTrap(void);
 extern void userTaskWithLock0(void);
 extern void userTaskWithLock1(void);
 
+extern void testSyscall(void);
 
 
 void userTask0(void) {
@@ -43,7 +44,11 @@ void userTask1(void) {
 
 void osMain(void) {
 
-    taskCreate(userTaskWithTimer);
+
+
+    taskCreate(testSyscall);
+
+    //taskCreate(userTaskWithTimer);
 
     //taskCreate(userTaskWithLock0);
     //taskCreate(userTaskWithLock1);
