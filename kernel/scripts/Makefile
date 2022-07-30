@@ -1,14 +1,10 @@
-CROSS_COMPILE = riscv64-unknown-elf-
+cross_compile = riscv64-unknown-elf-
+qemu = qemu-system-riscv32
+qemu_args = -nographic -smp 1 -machine virt -bios none
 # gcc -w 关闭警告信息  -W 显示警告信息
-CFLAGS = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -w
+gcc_args = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -w
+gdb = gdb-multiarch
 
-QEMU = qemu-system-riscv32
-QFLAGS = -nographic -smp 1 -machine virt -bios none
-
-GDB = gdb-multiarch
-CC = ${CROSS_COMPILE}gcc
-OBJCOPY = ${CROSS_COMPILE}objcopy
-OBJDUMP = ${CROSS_COMPILE}objdump
 
 SRCS_ASM = \
 	.././assembly/start.S \
@@ -27,6 +23,8 @@ SRCS_C = \
 	../plic.c \
 	../timer.c \
 	../lock.c \
+	../syscall.c \
+	../c/syscall/csr.c \
 	../../test/TptogiarOS/testTask.c \
 	../../test/TptogiarOS/testPage.c \
 	../../test/TptogiarOS/testTrap.c \
@@ -34,41 +32,48 @@ SRCS_C = \
 	../../test/TptogiarOS/testTimer.c \
 
 
+gcc = ${cross_compile}gcc
+objcopy = ${cross_compile}objcopy
+objdump = ${cross_compile}objdump
+
+
 OBJS = $(SRCS_ASM:.S=.o)
 OBJS += $(SRCS_C:.c=.o)
+
 
 .DEFAULT_GOAL := all
 all: TptogiarOS.elf
 
+
 # start.o must be the first in dependency!
 TptogiarOS.elf: ${OBJS}
-	${CC} ${CFLAGS} -T ./os.ld -o TptogiarOS.elf $^
-	${OBJCOPY} -O binary TptogiarOS.elf TptogiarOS.bin
+	${gcc} ${gcc_args} -T ./os.ld -o TptogiarOS.elf $^
+	${objcopy} -O binary TptogiarOS.elf TptogiarOS.bin
 	echo "\e[;31;1m Success! \e[m"
 
 %.o : %.c
-	${CC} ${CFLAGS} -c -o $@ $<
+	${gcc} ${gcc_args} -c -o $@ $<
 
 %.o : %.S
-	${CC} ${CFLAGS} -c -o $@ $<
+	${gcc} ${gcc_args} -c -o $@ $<
 
 run: all
-	@${QEMU} -M ? | grep virt >/dev/null || exit
-	@echo "Press Ctrl-A and then X to exit QEMU"
+	@${qemu} -M ? | grep virt >/dev/null || exit
+	@echo "Press Ctrl-A and then X to exit qemu"
 	@echo "------------------------------------"
-	@${QEMU} ${QFLAGS} -kernel TptogiarOS.elf
+	@${qemu} ${qemu_args} -kernel TptogiarOS.elf
 
 
 .PHONY : debug
 debug: all
-	@echo "Press Ctrl-C and then input 'quit' to exit GDB and QEMU"
+	@echo "Press Ctrl-C and then input 'quit' to exit gdb and qemu"
 	@echo "-------------------------------------------------------"
-	@${QEMU} ${QFLAGS} -kernel TptogiarOS.elf -s -S &
-	@${GDB} TptogiarOS.elf -q -x ./gdbinit
+	@${qemu} ${qemu_args} -kernel TptogiarOS.elf -s -S &
+	@${gdb} TptogiarOS.elf -q -x ./gdbinit
 
 .PHONY : code
 code: all
-	@${OBJDUMP} -S TptogiarOS.elf | less
+	@${objdump} -S TptogiarOS.elf | less
 
 .PHONY : clean
 clean:
