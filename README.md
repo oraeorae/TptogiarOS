@@ -21,5 +21,5 @@
 
 
 <details>
-<summary>版本更新情况</summary>
+  <h1><summary>版本更新情况</summary></h1>
 </details>
