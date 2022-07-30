@@ -21,6 +21,7 @@
 
 <details open="open">
   <summary>v1.0-alpha</summary>
+  
 ```
 1.  [新增] 系统引导
 2.  [新增] 串口输出
@@ -37,4 +38,5 @@
 13. [新增] 软件定时器
 14. [新增] 系统调用
 ```
+
 </details>
