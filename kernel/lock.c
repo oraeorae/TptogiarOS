@@ -8,12 +8,12 @@ struct SpinLock{
 };
 
 
-struct SpinLock* getSpinLock(){
-    struct SpinLock lock = {.state = 1};
-    return &lock;
-}
+//struct SpinLock* getSpinLock(){
+//    struct SpinLock lock = {.state = 1};
+//    return &lock;
+//}
 
-int spinLock(struct SpinLock* lock){
+int spinLock(){
     //printf(" before while \n");
     //while (__sync_lock_test_and_set(&lock->state,1) != 0){
     //}
@@ -24,7 +24,7 @@ int spinLock(struct SpinLock* lock){
 }
 
 
-int spinUnlock(struct SpinLock* lock){
+int spinUnlock(){
     //lock->state = 0;
     write_mstatus(read_mstatus() | MSTATUS_MIE);
 }

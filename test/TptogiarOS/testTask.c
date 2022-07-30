@@ -6,7 +6,7 @@
 
 #define DELAY 1000
 
-
+extern void userTaskWithTimer(void);
 
 
 
@@ -40,13 +40,13 @@ void userTaskWithTrap(void) {
 void userTaskWithLock0(void){
     printf("Lock0 Task : 任务被创建！ \n");
     int count = 0;
-    struct SpinLock* lock = getSpinLock();
+
 
     while (1) {
         if (count<20){
-            lock = spinLock(lock);
+            spinLock();
         } else {
-            spinUnlock(lock);
+            spinUnlock();
         }
         printf("Lock0 Task : Running \n");
         taskDelayCount(5000);
@@ -63,11 +63,19 @@ void userTaskWithLock1(void){
 }
 
 
+
+
+
+
 void osMain(void) {
 
-    taskCreate(userTaskWithLock0);
-    taskCreate(userTaskWithLock1);
+    taskCreate(userTaskWithTimer);
+
+    //taskCreate(userTaskWithLock0);
+    //taskCreate(userTaskWithLock1);
+
     //taskCreate(userTask0);
     //taskCreate(userTask1);
+
     //taskCreate(userTaskWithTrap);
 }

@@ -33,9 +33,12 @@ extern void taskYield();
 extern int plicClaim(void);
 extern void plicComplete(int interruptId);
 
-extern struct SpinLock* getSpinLock();
-extern int spinLock(struct SpinLock* lock);
-extern int spinUnlock(struct SpinLock* lock);
+//extern struct SpinLock* getSpinLock();
+extern int spinLock();
+extern int spinUnlock();
+
+
+
 
 // 用以表征CPU内的全部寄存器，以便于上下文切换
 struct Context {
@@ -84,7 +87,12 @@ struct Context {
     reg_t pc;
 };
 
-
-
+struct Timer{
+    void (*func)(void *args);
+    void *args;
+    uint32_t timeoutTick;
+};
+extern struct Timer *timerCreate(void (*handler)(void *args), void *args, uint32_t timeout);
+extern void timerDelete(struct Timer* timer);
 
 #endif /* __OS_H__ */

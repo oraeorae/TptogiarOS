@@ -5,9 +5,16 @@
 
 extern void schedule(void);
 
+//
 #define TIMER_INTERVAL CLINT_TIMEBASE_FREQ
+// 最大软件定时器数
+#define MAX_TIMER 100
+
 
 static uint32_t tick = 0;
+static struct Timer timerList[MAX_TIMER];
+
+
 
 void timerLoad(int interval){
     // 每个hart都有独一里一套寄存器，所以mtime是独立的，
@@ -23,6 +30,14 @@ void timerLoad(int interval){
 
 void timerInit(){
 
+    struct Timer* timerPointer = &(timerList[0]);
+    for (int i = 0; i < MAX_TIMER; ++i) {
+        timerPointer->func = NULL;
+        timerPointer->args = NULL;
+        timerPointer++;
+    }
+
+
     timerLoad(TIMER_INTERVAL);
     // 对于当前CPU，打开Meachine模式下的定时器中断
     write_mie(read_mie() | MIE_MTIE);
@@ -32,10 +47,67 @@ void timerInit(){
 
 }
 
+struct Timer *timerCreate(void (*handler)(void *args), void *args, uint32_t timeout){
+    if (NULL == handler || 0 ==timeout){
+        return NULL;
+    }
+
+    spinLock();
+
+    struct Timer * timerPointer = &(timerList[0]);
+    for (int i = 0; i < MAX_TIMER; ++i) {
+        if (NULL == timerPointer->func){
+            break;
+        }
+        timerPointer++;
+    }
+    //if (NULL != timerPointer->func){
+    //
+    //}
+    timerPointer->func = handler;
+    timerPointer->args = args;
+    timerPointer->timeoutTick = tick + timeout;
+    spinUnlock();
+    return timerPointer;
+}
+
+void timerDelete(struct Timer* timer){
+    spinLock();
+    struct Timer* timerPointer = &(timerList[0]);
+    for (int i = 0; i < MAX_TIMER; ++i) {
+        if (timerPointer == timer){
+            timerPointer->func = NULL;
+            timerPointer->args = NULL;
+            break;
+        }
+        timerPointer++;
+    }
+    spinUnlock();
+}
+
+static inline void timerCheck(){
+    struct Timer* timerPointer = &(timerList[0]);
+    for (int i = 0; i < MAX_TIMER; ++i) {
+        if (NULL != timerPointer->func){
+            if (tick >= timerPointer->timeoutTick){
+                timerPointer->func(timerPointer->args);
+
+                timerPointer->func = NULL;
+                timerPointer->args = NULL;
+                break;
+            }
+        }
+        timerPointer++;
+    }
+}
+
+
+
 void timerHandler(){
     tick++;
     printf("当前已经产生的定时器中断的次数 = %d \n",tick);
-    timerLoad(TIMER_INTERVAL / 2 );
+    timerCheck();
+    timerLoad(TIMER_INTERVAL);
     schedule();
 }
 
