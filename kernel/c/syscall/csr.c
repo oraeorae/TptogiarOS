@@ -1,7 +1,7 @@
 //
 // Created by root on 2022.07.30.
 //
-#include "../../headers/os.h"
+#include "../headers/os.h"
 
 
 int sys_getHartId(unsigned int* ptrHartId){
