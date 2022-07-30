@@ -30,6 +30,7 @@ SRCS_C = \
 	../../test/TptogiarOS/testTask.c \
 	../../test/TptogiarOS/testPage.c \
 	../../test/TptogiarOS/testTrap.c \
+	../../test/TptogiarOS/testLock.c \
 	../../test/TptogiarOS/testTimer.c \
 
 

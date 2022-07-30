@@ -17,5 +17,12 @@ void testTrap(){
 
 }
 
-
+void userTaskWithTrap(void) {
+    printf("Task 2 : 任务被创建！ \n");
+    while (1) {
+        printf("Task 2 : Running \n");
+        testTrap();
+        taskDelayCount(5000);
+    }
+}
 

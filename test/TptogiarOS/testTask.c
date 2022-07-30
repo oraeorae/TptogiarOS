@@ -8,6 +8,11 @@
 
 extern void userTaskWithTimer(void);
 
+extern void userTaskWithTrap(void);
+
+extern void userTaskWithLock0(void);
+extern void userTaskWithLock1(void);
+
 
 
 void userTask0(void) {
@@ -28,39 +33,8 @@ void userTask1(void) {
     }
 }
 
-void userTaskWithTrap(void) {
-    printf("Task 2 : 任务被创建！ \n");
-    while (1) {
-        printf("Task 2 : Running \n");
-        testTrap();
-        taskDelayCount(5000);
-    }
-}
-
-void userTaskWithLock0(void){
-    printf("Lock0 Task : 任务被创建！ \n");
-    int count = 0;
 
 
-    while (1) {
-        if (count<20){
-            spinLock();
-        } else {
-            spinUnlock();
-        }
-        printf("Lock0 Task : Running \n");
-        taskDelayCount(5000);
-        count++;
-    }
-}
-
-void userTaskWithLock1(void){
-    printf("Lock1 Task : 任务被创建！ \n");
-    while (1) {
-        printf("Lock1 Task : Running \n");
-        taskDelayCount(5000);
-    }
-}
 
 
 
