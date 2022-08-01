@@ -89,5 +89,6 @@ clean:
 	cd ../assembly/macro && rm -rf *.o
 	cd ../../TptogiarOS-example && rm -rf *.o
 	cd ../../TptogiarOS-example/syscall && rm -rf *.o
+	echo "\e[;31;1m Success! \e[m"
 
 
