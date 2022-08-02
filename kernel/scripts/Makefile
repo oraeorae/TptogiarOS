@@ -6,31 +6,31 @@ gcc_args = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -w
 gdb = gdb-multiarch
 
 SRCS_ASM = \
-	.././assembly/Start.S \
-	.././assembly/Mem.S \
-	.././assembly/Switch.S \
-	.././assembly/Trap.S \
-	.././assembly/macro/Context.S \
-	../../TptogiarOS-example/syscall/TestCSR.S \
+	kernel/./assembly/Start.S \
+	kernel/./assembly/Mem.S \
+	kernel/./assembly/Switch.S \
+	kernel/./assembly/Trap.S \
+	kernel/./assembly/macro/Context.S \
+	kernel/../TptogiarOS-example/syscall/TestCSR.S \
 
 SRCS_C = \
-	../c/Kernel.c \
-	../c/Uart.c \
-	../c/Printf.c \
-	../c/Page.c \
-	../c/Schedule.c \
-	../c/Trap.c \
-	../c/Plic.c \
-	../c/Timer.c \
-	../c/Lock.c \
-	../c/syscall/Syscall.c \
-	../c/syscall/Csr.c \
-	../../TptogiarOS-example/TestTask.c \
-	../../TptogiarOS-example/TestPage.c \
-	../../TptogiarOS-example/TestTrap.c \
-	../../TptogiarOS-example/TestLock.c \
-	../../TptogiarOS-example/TestTimer.c \
-	../../TptogiarOS-example/syscall/TestSyscall.c \
+	kernel/c/Kernel.c \
+	kernel/c/Uart.c \
+	kernel/c/Printf.c \
+	kernel/c/Page.c \
+	kernel/c/Schedule.c \
+	kernel/c/Trap.c \
+	kernel/c/Plic.c \
+	kernel/c/Timer.c \
+	kernel/c/Lock.c \
+	kernel/c/syscall/Syscall.c \
+	kernel/c/syscall/Csr.c \
+	kernel/../TptogiarOS-example/TestTask.c \
+	kernel/../TptogiarOS-example/TestPage.c \
+	kernel/../TptogiarOS-example/TestTrap.c \
+	kernel/../TptogiarOS-example/TestLock.c \
+	kernel/../TptogiarOS-example/TestTimer.c \
+	kernel/../TptogiarOS-example/syscall/TestSyscall.c \
 
 
 gcc = ${cross_compile}gcc
@@ -52,7 +52,7 @@ all: TptogiarOS.elf
 
 # start.o must be the first in dependency!
 TptogiarOS.elf: ${OBJS}
-	${gcc} ${gcc_args} -T ./os.ld -o TptogiarOS.elf $^
+	${gcc} ${gcc_args} -T kernel/scripts/os.ld -o TptogiarOS.elf $^
 	${objcopy} -O binary TptogiarOS.elf TptogiarOS.bin
 	echo "\e[;31;1m Success! \e[m"
 
@@ -83,12 +83,12 @@ Code: all
 .PHONY : clean
 Clean:
 	rm -rf *.bin *.elf
-	cd ../c && rm -rf  *.o
-	cd ../c/syscall && rm -rf  *.o
-	cd ../assembly && rm -rf *.o
-	cd ../assembly/macro && rm -rf *.o
-	cd ../../TptogiarOS-example && rm -rf *.o
-	cd ../../TptogiarOS-example/syscall && rm -rf *.o
+	cd kernel/c && rm -rf  *.o
+	cd kernel/c/syscall && rm -rf  *.o
+	cd kernel/assembly && rm -rf *.o
+	cd kernel/assembly/macro && rm -rf *.o
+	cd kernel/../TptogiarOS-example && rm -rf *.o
+	cd kernel/../TptogiarOS-example/syscall && rm -rf *.o
 	echo "\e[;31;1m Success! \e[m"
 
 
