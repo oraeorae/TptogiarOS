@@ -1,4 +1,4 @@
-#include "headers/os.h"
+#include "headers/Os.h"
 
 
 extern void uartInit(void);

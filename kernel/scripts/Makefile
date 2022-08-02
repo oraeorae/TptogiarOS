@@ -6,31 +6,31 @@ gcc_args = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -w
 gdb = gdb-multiarch
 
 SRCS_ASM = \
-	.././assembly/start.S \
-	.././assembly/mem.S \
-	.././assembly/switch.S \
-	.././assembly/trap.S \
-	.././assembly/macro/context.S \
-	../../TptogiarOS-example/syscall/testCSR.S \
+	.././assembly/Start.S \
+	.././assembly/Mem.S \
+	.././assembly/Switch.S \
+	.././assembly/Trap.S \
+	.././assembly/macro/Context.S \
+	../../TptogiarOS-example/syscall/TestCSR.S \
 
 SRCS_C = \
-	../c/kernel.c \
-	../c/uart.c \
-	../c/printf.c \
-	../c/page.c \
-	../c/schedule.c \
-	../c/trap.c \
-	../c/plic.c \
-	../c/timer.c \
-	../c/lock.c \
-	../c/syscall/syscall.c \
-	../c/syscall/csr.c \
-	../../TptogiarOS-example/testTask.c \
-	../../TptogiarOS-example/testPage.c \
-	../../TptogiarOS-example/testTrap.c \
-	../../TptogiarOS-example/testLock.c \
-	../../TptogiarOS-example/testTimer.c \
-	../../TptogiarOS-example/syscall/testSyscall.c \
+	../c/Kernel.c \
+	../c/Uart.c \
+	../c/Printf.c \
+	../c/Page.c \
+	../c/Schedule.c \
+	../c/Trap.c \
+	../c/Plic.c \
+	../c/Timer.c \
+	../c/Lock.c \
+	../c/syscall/Syscall.c \
+	../c/syscall/Csr.c \
+	../../TptogiarOS-example/TestTask.c \
+	../../TptogiarOS-example/TestPage.c \
+	../../TptogiarOS-example/TestTrap.c \
+	../../TptogiarOS-example/TestLock.c \
+	../../TptogiarOS-example/TestTimer.c \
+	../../TptogiarOS-example/syscall/TestSyscall.c \
 
 
 gcc = ${cross_compile}gcc

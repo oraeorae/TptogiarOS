@@ -2,9 +2,9 @@
 #define __OS_H__
 
 
-#include "types.h"
-#include "platform.h"
-#include "riscv.h"
+#include "Types.h"
+#include "Platform.h"
+#include "Riscv.h"
 
 #include <stddef.h>
 #include <stdarg.h>

@@ -1,4 +1,4 @@
-#include "../c/headers/platform.h"
+#include "../c/headers/Platform.h"
 
 
 	.equ STACK_SIZE,1024
