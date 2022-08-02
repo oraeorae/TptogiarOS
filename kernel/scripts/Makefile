@@ -52,7 +52,7 @@ all: TptogiarOS.elf
 
 # start.o must be the first in dependency!
 TptogiarOS.elf: ${OBJS}
-	${gcc} ${gcc_args} -T ./os.ld -o TptogiarOS.elf $^
+	${gcc} ${gcc_args} -T kernel/scripts/os.ld -o TptogiarOS.elf $^
 	${objcopy} -O binary TptogiarOS.elf TptogiarOS.bin
 	echo "\e[;31;1m Success! \e[m"
 
@@ -83,12 +83,12 @@ Code: all
 .PHONY : clean
 Clean:
 	rm -rf *.bin *.elf
-	cd ../c && rm -rf  *.o
-	cd ../c/syscall && rm -rf  *.o
-	cd ../assembly && rm -rf *.o
-	cd ../assembly/macro && rm -rf *.o
-	cd ../../TptogiarOS-example && rm -rf *.o
-	cd ../../TptogiarOS-example/syscall && rm -rf *.o
+	cd kernel/c && rm -rf  *.o
+	cd kernel/c/syscall && rm -rf  *.o
+	cd kernel/assembly && rm -rf *.o
+	cd kernel/assembly/macro && rm -rf *.o
+	cd kernel/../TptogiarOS-example && rm -rf *.o
+	cd kernel/../TptogiarOS-example/syscall && rm -rf *.o
 	echo "\e[;31;1m Success! \e[m"
 
 
