@@ -1,5 +1,5 @@
-#include "headers/Types.h"
-#include "headers/Platform.h"
+#include "headers/types.h"
+#include "headers/platform.h"
 /*
  * The UART control registers are memory-mapped at address UART0. 
  * This macro returns the address of one of the registers.

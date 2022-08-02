@@ -1,7 +1,7 @@
 //
 // Created by root on 2022.07.23.
 //
-#include "headers/Os.h"
+#include "headers/os.h"
 
 extern void trapVector(void);
 extern void uartInterruptHandler(void);

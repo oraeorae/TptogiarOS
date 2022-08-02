@@ -1,7 +1,7 @@
 //
 // Created by root on 2022.07.29.
 //
-#include "headers/Os.h"
+#include "headers/os.h"
 
 struct SpinLock{
     int state;

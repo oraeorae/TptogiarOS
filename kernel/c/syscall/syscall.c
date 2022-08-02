@@ -1,8 +1,8 @@
 //
 // Created by root on 2022.07.30.
 //
-#include "../headers/Os.h"
-#include "../headers/Syscall.h"
+#include "../headers/os.h"
+#include "../headers/syscall.h"
 
 
 void doSyscall(struct Context *context) {

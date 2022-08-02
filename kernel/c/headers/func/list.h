@@ -6,7 +6,7 @@
 #define TPTOGIAROS_LIST_H
 
 
-#include "../Types.h"
+#include "../types.h"
 
 
 
