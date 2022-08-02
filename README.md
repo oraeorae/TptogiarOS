@@ -22,6 +22,7 @@
 <details open="open">
   <summary><h2>v1.0-alpha</h2></summary>
   ### 支持RV32
+  
 ```
 1.  [新增] 系统引导
 2.  [新增] 串口输出
