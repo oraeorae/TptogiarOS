@@ -1,5 +1,6 @@
-include ./second/Makefile
 include ./first/Makefile
+include ./second/Makefile
+
 
 
 .PHONY:mainFirst
