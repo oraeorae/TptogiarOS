@@ -62,7 +62,7 @@ TptogiarOS.elf: ${OBJS}
 %.o : %.S
 	${gcc} ${gcc_args} -c -o $@ $<
 
-run: all
+Run: all
 	@${qemu} -M ? | grep virt >/dev/null || exit
 	@echo "Press Ctrl-A and then X to exit qemu"
 	@echo "------------------------------------"
@@ -70,18 +70,18 @@ run: all
 
 
 .PHONY : debug
-debug: all
+Debug: all
 	@echo "Press Ctrl-C and then input 'quit' to exit gdb and qemu"
 	@echo "-------------------------------------------------------"
 	@${qemu} ${qemu_args} -kernel TptogiarOS.elf -s -S &
 	@${gdb} TptogiarOS.elf -q -x ./gdbinit
 
 .PHONY : code
-code: all
+Code: all
 	@${objdump} -S TptogiarOS.elf | less
 
 .PHONY : clean
-clean:
+Clean:
 	rm -rf *.bin *.elf
 	cd ../c && rm -rf  *.o
 	cd ../c/syscall && rm -rf  *.o
