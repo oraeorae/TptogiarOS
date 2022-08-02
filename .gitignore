@@ -15,4 +15,4 @@ CMakeFiles/
 *.cmake
 *.exe
 CMakeCache.txt
-/kernel/cmake-build-debug/
+/rv32/kernel/cmake-build-debug/

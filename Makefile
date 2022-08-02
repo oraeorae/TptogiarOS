@@ -1,2 +1,2 @@
-include kernel/scripts/Makefile
+include rv32/kernel/scripts/Makefile
 
