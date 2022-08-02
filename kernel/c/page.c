@@ -89,7 +89,8 @@ void pageInit() {
     printf("DATA: 0x%x --> 0x%x \n", DATA_START, DATA_END);
     printf("BSS: 0x%x --> 0x%x \n", BSS_START, BSS_END);
     printf("HEAP: 0x%x --> 0x%x \n", _page_alloc_start_address, _page_alloc_end_address);
-
+    printf("heap size = %d,  page count = %d \n",HEAP_SIZE,_num_pages);
+    printf("\n\n");
 }
 
 
