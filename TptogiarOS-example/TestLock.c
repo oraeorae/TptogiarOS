@@ -1,7 +1,7 @@
 //
 // Created by root on 2022.07.30.
 //
-#include "../kernel/c/headers/os.h"
+#include "../kernel/c/headers/Os.h"
 
 
 

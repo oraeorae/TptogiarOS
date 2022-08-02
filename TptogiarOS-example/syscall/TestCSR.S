@@ -1,4 +1,4 @@
-#include "../user-api/syscall.h"
+#include "../user-api/Syscall.h"
 
 
 .global getHartId

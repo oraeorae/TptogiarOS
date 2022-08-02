@@ -5,7 +5,7 @@
 #ifndef TPTOGIAROS_PYHSICSMEMORYMGR_H
 #define TPTOGIAROS_PYHSICSMEMORYMGR_H
 
-#include "../headers/types.h"
+#include "../headers/Types.h"
 #include "../headers/func/list.h"
 
 

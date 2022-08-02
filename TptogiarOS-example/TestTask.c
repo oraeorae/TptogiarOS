@@ -1,7 +1,7 @@
 //
 // Created by root on 2022.07.21.
 //
-#include "../kernel/c/headers/os.h"
+#include "../kernel/c/headers/Os.h"
 
 
 #define DELAY 1000

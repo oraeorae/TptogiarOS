@@ -5,7 +5,7 @@
 #ifndef TPTOGIAROS_RISCV_H
 #define TPTOGIAROS_RISCV_H
 
-#include "types.h"
+#include "Types.h"
 
 #define MSTATUS_MPP (3<<11)
 #define MSTATUS_SPP (1<<8)

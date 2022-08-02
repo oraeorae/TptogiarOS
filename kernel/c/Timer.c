@@ -1,7 +1,7 @@
 //
 // Created by root on 2022.07.26.
 //
-#include "headers/os.h"
+#include "headers/Os.h"
 
 extern void schedule(void);
 
