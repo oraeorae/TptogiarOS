@@ -20,7 +20,7 @@ extern void timerInit(void);
 void start_kernel(void) {
 
     uartInit();
-    uart_puts("\n\n======  Hello TptogiarOS kernel !  ======\n\n\n");
+    uart_puts("\n\n======  Hello TptogiarOS kernel rv32 !  ======\n\n\n");
 
     pageInit();
     pageTest();

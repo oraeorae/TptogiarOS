@@ -104,15 +104,15 @@
 #define MCONTROL_MATCH_MASK_LOW  4
 #define MCONTROL_MATCH_MASK_HIGH 5
 
-#define MIP_SSIP            (1 << IRQ_S_SOFT)
-#define MIP_HSIP            (1 << IRQ_H_SOFT)
-#define MIP_MSIP            (1 << IRQ_M_SOFT)
-#define MIP_STIP            (1 << IRQ_S_TIMER)
-#define MIP_HTIP            (1 << IRQ_H_TIMER)
-#define MIP_MTIP            (1 << IRQ_M_TIMER)
-#define MIP_SEIP            (1 << IRQ_S_EXT)
-#define MIP_HEIP            (1 << IRQ_H_EXT)
-#define MIP_MEIP            (1 << IRQ_M_EXT)
+#define MIP_SSIP            (1 << InterruptNum_S_SOFT)
+#define MIP_HSIP            (1 << InterruptNum_H_SOFT)
+#define MIP_MSIP            (1 << InterruptNum_M_SOFT)
+#define MIP_STIP            (1 << InterruptNum_S_TIMER)
+#define MIP_HTIP            (1 << InterruptNum_H_TIMER)
+#define MIP_MTIP            (1 << InterruptNum_M_TIMER)
+#define MIP_SEIP            (1 << InterruptNum_S_EXT)
+#define MIP_HEIP            (1 << InterruptNum_H_EXT)
+#define MIP_MEIP            (1 << InterruptNum_M_EXT)
 
 #define SIP_SSIP MIP_SSIP
 #define SIP_STIP MIP_STIP
@@ -129,20 +129,20 @@
 #define VM_SV39  9
 #define VM_SV48  10
 
-#define IRQ_U_SOFT   0
-#define IRQ_S_SOFT   1
-#define IRQ_H_SOFT   2
-#define IRQ_M_SOFT   3
-#define IRQ_U_TIMER  4
-#define IRQ_S_TIMER  5
-#define IRQ_H_TIMER  6
-#define IRQ_M_TIMER  7
-#define IRQ_U_EXT    8
-#define IRQ_S_EXT    9
-#define IRQ_H_EXT    10
-#define IRQ_M_EXT    11
-#define IRQ_COP      12
-#define IRQ_HOST     13
+#define InterruptNum_U_SOFT   0
+#define InterruptNum_S_SOFT   1
+#define InterruptNum_H_SOFT   2
+#define InterruptNum_M_SOFT   3
+#define InterruptNum_U_TIMER  4
+#define InterruptNum_S_TIMER  5
+#define InterruptNum_H_TIMER  6
+#define InterruptNum_M_TIMER  7
+#define InterruptNum_U_EXT    8
+#define InterruptNum_S_EXT    9
+#define InterruptNum_H_EXT    10
+#define InterruptNum_M_EXT    11
+#define InterruptNum_COP      12
+#define InterruptNum_HOST     13
 
 #define DEFAULT_RSTVEC     0x00001000
 #define DEFAULT_NMIVEC     0x00001004

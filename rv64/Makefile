@@ -5,12 +5,16 @@ SLASH	:= /
 
 V       := @
 
-#ifndef GCCPREFIX
+
 GCCPREFIX := riscv64-unknown-elf-
-#endif
+
 
 ifndef QEMU
 QEMU := qemu-system-riscv64
+endif
+
+ifndef SPIKE
+SPIKE := spike
 endif
 
 
@@ -80,7 +84,7 @@ match = $(shell echo $(2) | $(AWK) '{for(i=1;i<=NF;i++){if(match("$(1)","^"$$(i)
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # include kernel/user
 
-INCLUDE	+= libs 
+INCLUDE	+= libs/
 
 CFLAGS	+= $(addprefix -I,$(INCLUDE))
 
@@ -96,14 +100,22 @@ KINCLUDE	+= kernel/debug/ \
 			   kernel/trap/ \
 			   kernel/libs/\
 			   kernel/memoryMgr/ \
-			   kernel/arch/
+			   kernel/arch/ \
+			   kernel/driver/ \
+			   kernel/timer/ \
+			   kernel/interrupt/ \
+			   libs/
 
 KSRCDIR		+= kernel/init \
 			   kernel/debug \
 			   kernel/libs \
 			   kernel/console \
 			   kernel/trap \
-			   kernel/memoryMgr
+			   kernel/memoryMgr \
+			   kernel/driver/ \
+			   kernel/timer/ \
+			   kernel/interrupt/ \
+			   libs/
 
 KCFLAGS		+= $(addprefix -I,$(KINCLUDE))
 
@@ -164,6 +176,13 @@ qemu: $(UCOREIMG) $(SWAPIMG) $(SFSIMG)
 		-nographic \
 		-bios default \
 		-device loader,file=$(UCOREIMG),addr=0x80200000
+
+
+spike: $(UCOREIMG) $(SWAPIMG) $(SFSIMG)
+	$(V)$(SPIKE) $(UCOREIMG)
+
+
+
 
 .PHONY: grade touch
 
