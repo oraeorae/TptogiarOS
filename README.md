@@ -14,7 +14,7 @@
 # 参考资料
 [回到目录👆](#目录)
 - [RISC-V指令集架构规范文档](https://riscv.org/technical/specifications/)
-
+- [xv6](https://th0ar.gitbooks.io/xv6-chinese/content/)
 
 
 
