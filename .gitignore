@@ -16,3 +16,4 @@ CMakeFiles/
 *.exe
 CMakeCache.txt
 /rv32/kernel/cmake-build-debug/
+/temp/git.sh
