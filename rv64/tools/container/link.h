@@ -1,5 +1,5 @@
-#ifndef TPTOGIAROS_TYPE_H
-#define TPTOGIAROS_TYPE_H
+#ifndef TPTOGIAROS_LINK_H
+#define TPTOGIAROS_LINK_H
 
 
 #pragma once
@@ -65,4 +65,4 @@ bool link_empty(link_t* link);
 
 
 
-#endif //TPTOGIAROS_TYPE_H
+#endif //TPTOGIAROS_LINK_H
