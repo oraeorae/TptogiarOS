@@ -44,7 +44,7 @@ void test(link_t* link, int a[500], int len) {
     link_clear(link);
 }
 
-void test1(link_t* link)
+void test_addFirstValue(link_t* link)
 {
     int a = 0;
     link_node_t* n;
@@ -52,7 +52,7 @@ void test1(link_t* link)
     test(link, test_example[0], 1);
 }
 
-void test2(link_t* link)
+void test_addAndDelete(link_t* link)
 {
     int a = 0;
     link_node_t* n;
@@ -62,7 +62,7 @@ void test2(link_t* link)
     test(link, test_example[1], 0);
 }
 
-void test3(link_t* link)
+void test_addValues(link_t* link)
 {
     int a = 0;
     link_node_t* n;
@@ -76,13 +76,15 @@ void test3(link_t* link)
     link_push(link, &a);
     test(link, test_example[2], 4);
 }
+
 bool compare(const void* a, const void* b) {
     return *(int*)a == *(int*)b;
 }
-void test4(link_t* link)
+
+void test_findAndInsert(link_t* link)
 {
     int a = 0;
-    link_node_t* n;
+    link_node_t* node;
     a = 1;
     link_push(link, &a);
     a = 2;
@@ -91,14 +93,14 @@ void test4(link_t* link)
     link_push(link, &a);
     a = 4;
     link_push(link, &a);
-    n = link_find(link, &a, compare);
+    node = link_find(link, &a, compare);
     a = 8;
-    link_insert(link, n, &a);
+    link_insert(link, node, &a);
     test(link, test_example[3], 5);
 }
 
 
-void test5(link_t* link)
+void test_set(link_t* link)
 {
     int a = 0;
     link_node_t* n;
@@ -118,7 +120,7 @@ void test5(link_t* link)
     test(link, test_example[4], 5);
 }
 
-void test6(link_t* link)
+void test_delete(link_t* link)
 {
     int a = 0;
     link_node_t* n;
@@ -159,12 +161,12 @@ int main(){
     link_init_alloc_dealloc(&test_link, alloc, dealloc);
     link_construct(&test_link, sizeof(int));
 
-    test1(&test_link);
-    //test2(&test_link);
-    //test3(&test_link);
-    //test4(&test_link);
-    //test5(&test_link);
-    //test6(&test_link);
+    test_addFirstValue(&test_link);
+    test_addAndDelete(&test_link);
+    test_addValues(&test_link);
+    test_findAndInsert(&test_link);
+    test_set(&test_link);
+    test_delete(&test_link);
 
     link_destory(&test_link);
 
