@@ -1,9 +1,10 @@
 #!/bin/bash
 
 
-for arg in "$*"
+for arg in "$@"
     do
-        gcc -g ${arg}.c ../${arg}.c -o ${arg}.bin
+        echo ${arg}
+        gcc -g ${arg}.c ../*.c -o ${arg}.bin
     done
 
 for arg in "$*"
