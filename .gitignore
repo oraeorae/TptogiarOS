@@ -18,3 +18,4 @@ CMakeCache.txt
 /rv32/kernel/cmake-build-debug/
 /rv64/bin/
 /rv64/obj/
+/temp/git.sh
