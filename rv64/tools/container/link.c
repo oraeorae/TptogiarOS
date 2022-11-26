@@ -97,6 +97,7 @@ link_node_t* link_end(link_t* link)
     return begin->prev;
 }
 
+// insert before node
 link_node_t* link_insert(link_t* link, link_node_t* node, void* value)
 {
     link_node_t* new_node = link_node_alloc(value, link->type_size, link->alloc);
@@ -118,12 +119,14 @@ link_node_t* link_push(link_t* link, void* value)
 {
     link_node_t* new_node = link_node_alloc(value, link->type_size, link->alloc);
     link->len++;
+    // only one node
     if (link->head->next == NULL) {
         new_node->next = new_node;
         new_node->prev = new_node;
         link->head->next = new_node;
         return new_node;
     }
+    // push into link head
     link_node_t* head = link->head->next;
     link_node_t* tail = head->prev;
 
