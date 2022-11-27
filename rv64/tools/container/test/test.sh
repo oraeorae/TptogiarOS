@@ -3,8 +3,8 @@
 
 for arg in "$@"
     do
-        echo ${arg}
         gcc -g ${arg}.c ../*.c -o ${arg}.bin
+        echo compile ${arg} succeed!
     done
 
 for arg in "$*"
